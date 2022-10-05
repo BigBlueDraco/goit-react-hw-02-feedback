@@ -6,25 +6,27 @@ import { Section } from 'components/Section/Section';
 import React from 'react';
 
 export class Feedback extends React.Component{
+
+    constructor(props){
+        super(props);
+        const state = this.props.feedbackOptions.reduce((acc, elem) =>{
+            const obj = {[elem]: 0}
+            return{...acc, ...obj}
+        }, {});
+        this.state = {...state};
+        console.log(this.state)
+        }
+    
     state = {
         good: 0,
         neutral: 0,
         bad: 0,
     }
-
-    addGood = () =>  {
-        this.setState(state => ({
-            good: state.good+1, 
-        }))
-    }
-    addNeutral = () => {
-        this.setState(state => ({
-            neutral: state.neutral+1, 
-        }))
-    }
-    addBad = () => {
-        this.setState(state => ({
-            bad: state.bad+1, 
+    onLeaveFeedback = (e) => {
+        console.log(e)
+        console.log(e.target.textContent)
+        this.setState(state => ({ 
+            [e.target.textContent]: state[e.target.textContent]+1, 
         }))
     }
 
@@ -36,21 +38,20 @@ export class Feedback extends React.Component{
         return Math.round(this.state.good/total*10000)/100 ;
     }
     render(){
-        
+        console.log(this.props)
         return(
         <>
-        <Section title={this.props.title}>
+        <Section title={this.props.feedbackTitle}>
             <div className='feedback-wrap'>
-                <Button func={this.addGood} text="Good"/>
-                <Button func={this.addNeutral} text="Neutral"/>
-                <Button func={this.addBad} text="Bad"/>
+                {this.props.feedbackOptions.map(elem=>(
+                    <Button key ={elem} func = {this.onLeaveFeedback} text = {elem}/>
+                ))}
             </div>
         </Section>
         
-        <Section title="Statistic" >
-            <Statistics 
-                
-                good ={this.state.good}
+        <Section title={this.props.statisticTitle} >
+            <Statistics             
+                good ={this.state.TEST}
                 neutral={this.state.neutral}
                 bad = {this.state.bad}
                 positivePercentage = {this.positivePercentage()}/>
@@ -64,5 +65,5 @@ export class Feedback extends React.Component{
 
 Feedback.PropsTypes = {
     title: PropTypes.string,
-    feedbackOptions: PropTypes.arrayOf(PropTypes.string,).isRequired,
+    // feedbackOptions: PropTypes.arrayOf(PropTypes.string,).isRequired,
 }
