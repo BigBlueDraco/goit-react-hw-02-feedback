@@ -16,8 +16,6 @@ export class Feedback extends React.Component{
         this.state = {...state};
     }
     onLeaveFeedback = (e) => {
-        console.log(e)
-        console.log(e.target.textContent)
         this.setState(state => ({ 
             [e.target.textContent]: state[e.target.textContent]+1, 
         }))
@@ -55,7 +53,8 @@ export class Feedback extends React.Component{
 }
 
 Feedback.propTypes = {
-    title: PropTypes.string,
+    statisticTitle: PropTypes.string,
+    feedbackTitle: PropTypes.string,
     feedbackOptions: PropTypes.arrayOf(PropTypes.string,).isRequired,
     percentageOptions: PropTypes.arrayOf(PropTypes.string,),
 }

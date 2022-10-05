@@ -1,17 +1,22 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+import s from 'components/Statistics/statistics.module.scss'
+
 export const Statistics = ({names, values, percentageOptions:{iDs, func}}) => {
         return(
             <>
+            <div className={s.statisticWrap}>
                 {names.map((elem, index) => (
                     <StatisticItem key={elem} name={elem} value={values[index]}/>
                 ))}
-
+            </div> 
+            <div className={s.percentageWrap}>
                 {iDs.map(elem => (
                     <StatisticPercent key = {elem} name = {elem} value = {func(elem)} />
                 ))}
-            </>       
+            </div>
+            </>     
         );
 }
 
@@ -22,7 +27,7 @@ const StatisticItem = ({name, value}) =>{
 }
 const StatisticPercent = ({name, value}) => {
     return(
-        <span>{name} feedback percentage: {value}</span>
+        <span>{name} feedback percentage: {value}%</span>
     )  
 }
 
