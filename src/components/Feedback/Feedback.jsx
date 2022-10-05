@@ -14,13 +14,6 @@ export class Feedback extends React.Component{
             return{...acc, ...obj}
         }, {});
         this.state = {...state};
-        console.log(this.state)
-        }
-    
-    state = {
-        good: 0,
-        neutral: 0,
-        bad: 0,
     }
     onLeaveFeedback = (e) => {
         console.log(e)
@@ -30,15 +23,14 @@ export class Feedback extends React.Component{
         }))
     }
 
-    positivePercentage = () => {
+    percentage = (id) => {
         const total = Object.values(this.state).reduce((acc, elem)=>{
             return acc+elem;
         }, 0);
         if(total <= 0) return 0; 
-        return Math.round(this.state.good/total*10000)/100 ;
+        return Math.round(this.state[id]/total*10000)/100 ;
     }
     render(){
-        console.log(this.props)
         return(
         <>
         <Section title={this.props.feedbackTitle}>
@@ -50,11 +42,10 @@ export class Feedback extends React.Component{
         </Section>
         
         <Section title={this.props.statisticTitle} >
-            <Statistics             
-                good ={this.state.TEST}
-                neutral={this.state.neutral}
-                bad = {this.state.bad}
-                positivePercentage = {this.positivePercentage()}/>
+            <Statistics  
+                names={Object.keys(this.state)}
+                values={Object.values(this.state)}
+                percentageOptions = {{iDs: this.props.percentageOptions, func: this.percentage}}  />
         </Section>
         
         </>
@@ -63,7 +54,8 @@ export class Feedback extends React.Component{
     
 }
 
-Feedback.PropsTypes = {
+Feedback.propTypes = {
     title: PropTypes.string,
-    // feedbackOptions: PropTypes.arrayOf(PropTypes.string,).isRequired,
+    feedbackOptions: PropTypes.arrayOf(PropTypes.string,).isRequired,
+    percentageOptions: PropTypes.arrayOf(PropTypes.string,),
 }
