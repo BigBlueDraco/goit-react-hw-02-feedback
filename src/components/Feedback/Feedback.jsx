@@ -9,31 +9,30 @@ export class Feedback extends React.Component{
         good: 0,
         neutral: 0,
         bad: 0,
-        total: 0
     }
 
     addGood = () =>  {
         this.setState(state => ({
             good: state.good+1, 
-            total: state.total+1
         }))
     }
     addNeutral = () => {
         this.setState(state => ({
             neutral: state.neutral+1, 
-            total: state.total+1
         }))
     }
     addBad = () => {
         this.setState(state => ({
             bad: state.bad+1, 
-            total: state.total+1
         }))
     }
 
     positivePercentage = () => {
-        if(this.state.total <= 0) return 
-        return Math.round(this.state.good/this.state.total*10000)/100 ;
+        const total = Object.values(this.state).reduce((acc, elem)=>{
+            return acc+elem;
+        }, 0);
+        if(total <= 0) return 0; 
+        return Math.round(this.state.good/total*10000)/100 ;
     }
     render(){
         

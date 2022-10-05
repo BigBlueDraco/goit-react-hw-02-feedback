@@ -11,8 +11,8 @@ export class Statistics extends React.Component{
                 <div className="statistic-wrap">
                     <span>Good: {good}</span>
                     <span>Neutral: {neutral}</span>
-                    <span>Bad: {bad}</span>
-                    {this.props.positivePercentage&&<span>Positive Percentage: {positivePercentage}</span>}
+                    <span>Bad: {bad}</span> 
+                    <span>Positive Percentage: {this.props.positivePercentage?positivePercentage: 0}%</span>
                 </div>
             </>       
         );
