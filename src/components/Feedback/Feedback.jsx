@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import { Button } from 'components/Button/Button';
 import { Statistics } from 'components/Statistics/Statistics';
+import { Section } from 'components/Section/Section';
 import React from 'react';
 
 export class Feedback extends React.Component{
@@ -38,19 +39,23 @@ export class Feedback extends React.Component{
         
         return(
         <>
-        {this.props.title&&<h2>{this.props.title}</h2>}
-
-        <div className='feedback-wrap'>
-            <Button func={this.addGood} text="Good"/>
-            <Button func={this.addNeutral} text="Neutral"/>
-            <Button func={this.addBad} text="Bad"/>
-        </div>
-
-        <Statistics title="Statistic" 
-        good ={this.state.good}
-        neutral={this.state.neutral}
-        bad = {this.state.bad}
-        positivePercentage = {this.positivePercentage()}/>
+        <Section title={this.props.title}>
+            <div className='feedback-wrap'>
+                <Button func={this.addGood} text="Good"/>
+                <Button func={this.addNeutral} text="Neutral"/>
+                <Button func={this.addBad} text="Bad"/>
+            </div>
+        </Section>
+        
+        <Section title="Statistic" >
+            <Statistics 
+                
+                good ={this.state.good}
+                neutral={this.state.neutral}
+                bad = {this.state.bad}
+                positivePercentage = {this.positivePercentage()}/>
+        </Section>
+        
         </>
     );
     }
