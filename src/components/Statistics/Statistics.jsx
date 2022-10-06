@@ -5,18 +5,24 @@ import s from 'components/Statistics/statistics.module.scss'
 
 export const Statistics = ({names, values, percentageOptions:{iDs, func}}) => {
         return(
+        <>
+        {values.reduce((acc, elem)=>(acc+elem))?(
             <>
-            <div className={s.statisticWrap}>
+                <div className={s.statisticWrap}>
                 {names.map((elem, index) => (
                     <StatisticItem key={elem} name={elem} value={values[index]}/>
                 ))}
-            </div> 
-            <div className={s.percentageWrap}>
-                {iDs.map(elem => (
-                    <StatisticPercent key = {elem} name = {elem} value = {func(elem)} />
-                ))}
-            </div>
-            </>     
+                </div>
+                
+                <div className={s.percentageWrap}>
+                    {iDs.map(elem => (
+                        <StatisticPercent key = {elem} name = {elem} value = {func(elem)} />
+                    ))}
+                </div>
+            </>)
+
+        :<span>No feedback</span> }
+        </>     
         );
 }
 
