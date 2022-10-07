@@ -5,7 +5,7 @@ import s from "components/Button/button.module.scss"
 export class Button extends Component {
     render(){
         return(
-            <button className={s.button} type={this.props.type&&"button"} onClick={(e) => {this.props.func&&this.props.func(e)}}>{this.props.text}</button>
+            <button className={s.button} type={this.props.type||"button"} onClick={(e) => {this.props.func&&this.props.func(e)}}>{this.props.text}</button>
         )
     }        
 }

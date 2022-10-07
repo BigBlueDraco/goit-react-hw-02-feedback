@@ -1,5 +1,7 @@
+import { Contacts } from "components/Contacts/Contacts";
 import { FormAddContacts } from "components/FormAddContacts/FormAddContacts";
 import React from "react";
+import nextId from "react-id-generator";
 
 
 export class Phonebook  extends React.Component{
@@ -14,9 +16,14 @@ export class Phonebook  extends React.Component{
     }
     onSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.elements)
+        console.log(e.target.elements);
         
-        this.setState( state =>({contacts: state.contacts.push({name: state.name})}))
+        this.setState( state =>{
+            return(
+                {
+                   contacts: [...state.contacts, {id: nextId(), name: state.name}],
+                })
+        })
     }
 
 
@@ -24,7 +31,11 @@ export class Phonebook  extends React.Component{
     render(){
         console.log(this.state)
         return(
+            <>
             <FormAddContacts  inputFunc={this.handlerChangeContacts} submitFunc = {this.onSubmit}/>
+            <Contacts contacts={this.state.contacts}/>
+            </>
+            
         )
     }
 
