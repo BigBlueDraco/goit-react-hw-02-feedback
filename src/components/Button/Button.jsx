@@ -11,6 +11,6 @@ export class Button extends Component {
 }
 
 Button.propTypes ={
-    func: PropTypes.func.isRequired,
+    func: PropTypes.func,
     text: PropTypes.string.isRequired,
 }
