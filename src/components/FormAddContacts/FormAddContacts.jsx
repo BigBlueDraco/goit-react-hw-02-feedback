@@ -1,5 +1,6 @@
 import { Button } from "components/Button/Button"
 import { Section } from "components/Section/Section";
+import PropTypes from 'prop-types';
 
 export const FormAddContacts = ({inputFunc, submitFunc}) => {
     return(
@@ -30,4 +31,8 @@ export const FormAddContacts = ({inputFunc, submitFunc}) => {
 
         </>
     )
+}
+FormAddContacts.propTypes = {
+    inputFunc: PropTypes.func.isRequired,
+    submitFunc: PropTypes.func.isRequired,
 }

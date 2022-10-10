@@ -1,4 +1,5 @@
 import { Section } from "components/Section/Section";
+import PropTypes from 'prop-types';
 
 export const Contacts = ({contacts, searcheFunc, filter, deletFunc}) =>{
     return(
@@ -27,4 +28,13 @@ const ContactsItem=({id, name, number, deletFunc})=>{
             <button data-id={id} onClick={(e)=>deletFunc(e)}>Delete</button>
         </li>
     )
+}
+Contacts.propTypes = {
+    contacts: PropTypes.arrayOf(
+        PropTypes.exact({id: PropTypes.string.isRequired, 
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,})).isRequired, 
+    searcheFunc: PropTypes.func.isRequired, 
+    filter: PropTypes.string, 
+    deletFunc: PropTypes.func.isRequired
 }
