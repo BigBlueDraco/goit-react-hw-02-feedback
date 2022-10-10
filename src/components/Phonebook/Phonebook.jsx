@@ -16,8 +16,6 @@ export class Phonebook  extends React.Component{
 
     changeHandler = (e) =>{
         const {name, value} = e.target;
-        console.log(value)
-        console.log(name)
         this.setState( state =>({ options:{ ...state.options, [name]: value}}));
         
     }
@@ -26,24 +24,42 @@ export class Phonebook  extends React.Component{
     }
     onSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.elements)
+        if(this.state.contacts.findIndex(elem => elem.name === this.state.options.name) !== -1){
+            alert("Contact already exists")
+            return
+        }
         this.setState( state => {
-            const id = nextId();
             return(
             {
-                contacts: [...state.contacts, {id: id, name: state.options.name, number: state.options.number}],
+                contacts: [...state.contacts, {id: nextId(), name: state.options.name, number: state.options.number}],
             })
         })
     }
 
+    deleteContact = (e) =>{
+        console.log(e.target.dataset.id);
+        const index = this.state.contacts.findIndex(elem => elem.id === e.target.dataset.id)
+        console.log(index)
 
+        this.setState( state => {
+            const contacts = state.contacts;
+            contacts.splice(index, 1);
+            console.log(contacts);
+            return(
+            {
+                contacts: [...contacts],
+            })
+        })
+    }
 
     render(){
-        console.log(this.state)
         return(
             <>
             <FormAddContacts  inputFunc={this.changeHandler} submitFunc = {this.onSubmit}/>
-            <Contacts contacts={this.state.contacts} filter={this.state.filter} searcheFunc = {this.searcheHandler}/>
+            <Contacts contacts={this.state.contacts} 
+            filter={this.state.filter} 
+            searcheFunc = {this.searcheHandler}
+            deletFunc = {this.deleteContact}/>
             </>
             
         )
