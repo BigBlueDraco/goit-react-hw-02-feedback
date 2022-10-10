@@ -1,7 +1,8 @@
-import { Contacts } from "components/Contacts/Contacts";
-import { FormAddContacts } from "components/FormAddContacts/FormAddContacts";
 import React from "react";
 import nextId from "react-id-generator";
+
+import { Contacts } from "components/Contacts/Contacts";
+import { FormAddContacts } from "components/FormAddContacts/FormAddContacts";
 
 export class Phonebook  extends React.Component{
 

@@ -10,7 +10,7 @@ export const App = () => {
       feedbackOptions = {["Good", "Neutral", "Bad"]}
       percentageOptions ={["Good", "Bad"]}/>
 
-    <Phonebook/>
+      <Phonebook/>
     </>
     
   );

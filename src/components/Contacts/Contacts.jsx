@@ -1,9 +1,11 @@
-import { number } from "prop-types"
+import { Section } from "components/Section/Section";
 
 export const Contacts = ({contacts, searcheFunc, filter, deletFunc}) =>{
     return(
         <>
-        <input type="text" name="filter" onInput={(e)=>searcheFunc(e)} />
+        <Section title="Contacts">
+            <input type="text" name="filter" onInput={(e)=>searcheFunc(e)} />
+        
         <ul>
             {contacts.filter(({name})=> name.includes(filter)).map(elem=> (<ContactsItem 
             key={elem.id} 
@@ -12,6 +14,7 @@ export const Contacts = ({contacts, searcheFunc, filter, deletFunc}) =>{
             number={elem.number} 
             deletFunc={deletFunc}/>))}
         </ul>  
+        </Section>
         </>  
     )
 }

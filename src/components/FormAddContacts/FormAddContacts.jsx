@@ -1,10 +1,11 @@
 import { Button } from "components/Button/Button"
-
+import { Section } from "components/Section/Section";
 
 export const FormAddContacts = ({inputFunc, submitFunc}) => {
     return(
         <>
-        <form action="" onSubmit={(e) => submitFunc(e)}>    
+        <Section title="Add contact">
+            <form action="" onSubmit={(e) => submitFunc(e)}>    
         <input
             onInput={(e) => inputFunc(e)}
             type="text"
@@ -24,6 +25,8 @@ export const FormAddContacts = ({inputFunc, submitFunc}) => {
         />
         <Button type="submit" text="submit"></Button>
         </form>
+        </Section>
+        
 
         </>
     )
