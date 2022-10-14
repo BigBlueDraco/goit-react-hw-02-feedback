@@ -1,8 +1,11 @@
 import React from "react";
 import nextId from "react-id-generator";
 
-import { Contacts } from "components/Contacts/Contacts";
-import { FormAddContacts } from "components/FormAddContacts/FormAddContacts";
+import { ContactsList } from "components/ContactsList/ContactsList";
+import { ContactForm } from "components/ContactForm/ContactForm";
+import {Filter} from "components/Filter/Filter";
+import { Section } from "components/Section/Section";
+
 
 export class Phonebook  extends React.Component{
 
@@ -53,11 +56,14 @@ export class Phonebook  extends React.Component{
     render(){
         return(
             <>
-            <FormAddContacts  inputFunc={this.changeHandler} submitFunc = {this.onSubmit}/>
-            <Contacts contacts={this.state.contacts} 
-            filter={this.state.filter} 
-            searcheFunc = {this.searcheHandler}
-            deletFunc = {this.deleteContact}/>
+            <ContactForm  inputFunc={this.changeHandler} submitFunc = {this.onSubmit}/>
+            <Section title="Contacts">
+                <Filter searcheFunc = {this.searcheHandler}/>
+                <ContactsList contacts={this.state.contacts} 
+                filter={this.state.filter} 
+                deletFunc = {this.deleteContact}/>
+            </Section>
+            
             </>
             
         )

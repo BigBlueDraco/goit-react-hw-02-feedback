@@ -9,7 +9,7 @@ const INITIAL_FORM_DATA = {
     number: "",
 }
 
-export  class FormAddContacts extends Component {
+export  class ContactForm extends Component {
   static propTypes = {}
 
     state = {
@@ -73,7 +73,7 @@ export  class FormAddContacts extends Component {
         )
     }
 }
-FormAddContacts.propTypes = {
+ContactForm.propTypes = {
     inputFunc: PropTypes.func.isRequired,
     submitFunc: PropTypes.func.isRequired,
 }
