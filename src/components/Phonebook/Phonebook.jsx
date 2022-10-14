@@ -17,30 +17,27 @@ export class Phonebook  extends React.Component{
 
     changeHandler = (e) =>{
         const {name, value} = e.target;
-        this.setState( state =>({ options:{ ...state.options, [name]: value}}));
-        
+        this.setState( state =>({ options:{ ...state.options, [name]: value}}));    
     }
     searcheHandler = (e) =>{
-        this.setState(state=>({filter: e.target.value}))
+        this.setState(state=>({filter: e.target.value.toLowerCase()}))
     }
-    onSubmit = (e) => {
-        e.preventDefault();
-        if(this.state.contacts.findIndex(elem => elem.name === this.state.options.name) !== -1){
+    onSubmit = (data) => {
+        console.log(data);
+        if(this.state.contacts.findIndex(elem => elem.name === data.name) !== -1){
             alert("Contact already exists")
             return
         }
         this.setState( state => {
             return(
             {
-                contacts: [...state.contacts, {id: nextId(), name: state.options.name, number: state.options.number}],
+                contacts: [...state.contacts, {id: nextId(), name: data.name, number: data.number}],
             })
         })
     }
 
     deleteContact = (e) =>{
-        console.log(e.target.dataset.id);
         const index = this.state.contacts.findIndex(elem => elem.id === e.target.dataset.id)
-        console.log(index)
 
         this.setState( state => {
             const contacts = state.contacts;

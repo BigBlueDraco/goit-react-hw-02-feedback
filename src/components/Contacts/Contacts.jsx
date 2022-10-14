@@ -8,7 +8,7 @@ export const Contacts = ({contacts, searcheFunc, filter, deletFunc}) =>{
             <input type="text" name="filter" onInput={(e)=>searcheFunc(e)} />
         
         <ul>
-            {contacts.filter(({name})=> name.includes(filter)).map(elem=> (<ContactsItem 
+            {contacts.filter(({name})=> name.toLowerCase().includes(filter)).map(elem=> (<ContactsItem 
             key={elem.id} 
             id = {elem.id} 
             name={elem.name} 
