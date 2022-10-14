@@ -11,16 +11,7 @@ export class Phonebook  extends React.Component{
 
     state = {
         contacts: [],
-        filter: '',
-        options: {
-          name: "", 
-          number: '', 
-        }    
-    }
-
-    changeHandler = (e) =>{
-        const {name, value} = e.target;
-        this.setState( state =>({ options:{ ...state.options, [name]: value}}));    
+        filter: '', 
     }
     searcheHandler = (e) =>{
         this.setState(state=>({filter: e.target.value.toLowerCase()}))
